@@ -16,7 +16,7 @@ public class InfiniteGroundSpawner : MonoBehaviour
 
     private void Start()
     {
-        Tile newTile = Instantiate(tilePrefabs[Random.Range(0, tilePrefabs.Length - 1)], new Vector3(0, 0, 0), Quaternion.identity);
+        Tile newTile = Instantiate(tilePrefabs[Random.Range(0, tilePrefabs.Length)], new Vector3(0, 0, 0), Quaternion.identity);
         newTile.Initalize("0,0");
         spawnedTiles.Add(new Vector2(0, 0), newTile);
     }
