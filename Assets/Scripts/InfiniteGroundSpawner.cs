@@ -83,12 +83,4 @@ private void RemoveTiles(List<Vector2> coords)
             spawnedTiles.Remove(tP);
         }
     }
-    //void OnDrawGizmos()
-    //{
-    //    // 在場景視窗中繪製正方形區域的 Gizmos
-    //    Gizmos.color = Color.blue;
-    //    float halfSize = spawnRadius / 2f;  // 因為 DrawWireCube 使用的是半邊長，所以需要除以2
-    //    Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadius, 0.1f, spawnRadius));
-    //}
-
 }
