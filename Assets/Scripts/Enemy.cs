@@ -5,13 +5,14 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private float detectRange;
-    [SerializeField] private GameObject player;
 
+    private GameObject player;
     private float targetDistance;
     private float attactCountdown = 1.5f;
 
     public void Update()
     {
+        player = GameObject.Find("Player");
         targetDistance = Vector3.Distance(transform.position, player.transform.position);
         HandleMovement();
         HandleAttack();
@@ -21,6 +22,11 @@ public class Enemy : Character
         if (targetDistance < detectRange)
         {
             Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(lookDirection);
+            //在兩個旋轉之間平滑過渡
+            Vector3 smoothRotation = Quaternion.Lerp(transform.rotation,
+            rotation, Time.deltaTime * rotationSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, smoothRotation.y, 0f);
             Walk(lookDirection);
         }
         else

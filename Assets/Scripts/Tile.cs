@@ -11,5 +11,13 @@ public class Tile : MonoBehaviour
     public void Remove()
     {
         Destroy(gameObject);
+        //Transform enemy = transform.Find("Enemy");
+        //if (enemy == null)
+        //    Destroy(gameObject);
+        //else
+        //{
+        //    enemy.SetSiblingIndex(enemy.GetSiblingIndex() + 1);
+        //    Destroy(gameObject);
+        //}
     }
 }

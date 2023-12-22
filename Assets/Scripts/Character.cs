@@ -9,60 +9,73 @@ public class Character : MonoBehaviour, IAttackable
 {
     [SerializeField] protected float walkSpeed = 5f;
     [SerializeField] protected float runSpeed = 10f;
+    [SerializeField] protected float rotationSpeed = 2f;
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] protected float attackRange = 3f;
     [SerializeField] private float health = 100f;
     [SerializeField] private Image colorPart;
 
     protected CharacterController characterController;
-    protected Animator playerAnim;
-    protected AudioSource playerAudio;
+    protected Animator characterAnim;
+    protected AudioSource characterAudio;
 
     private float currentHealth;
+    private bool isDie = false;
 
     public void Start()
     {
         currentHealth = health;
         characterController = GetComponent<CharacterController>();
-        playerAnim = GetComponent<Animator>();
-        playerAudio = GetComponent<AudioSource>();
+        characterAnim = GetComponent<Animator>();
+        characterAudio = GetComponent<AudioSource>();
     }
 
     public virtual void HandleMovement() { }
     public virtual void HandleAttack() { }
     public void Idle()
     {
-        playerAnim.SetBool("isWalk", false);
+        characterAnim.SetBool("isWalk", false);
     }
     public void Walk(Vector3 moveDirection)
     {
         characterController.Move(moveDirection * walkSpeed * Time.deltaTime);
-        playerAnim.SetBool("isRun", false);
-        playerAnim.SetBool("isWalk", true);
+        characterAnim.SetBool("isRun", false);
+        characterAnim.SetBool("isWalk", true);
     }
     public void Run(Vector3 moveDirection)
     {
         characterController.Move(moveDirection * runSpeed * Time.deltaTime);
-        playerAnim.SetBool("isRun", true);
+        characterAnim.SetBool("isRun", true);
     }
     public void Attack(IAttackable target)
     {
-        playerAnim.SetTrigger("Attack");
+        characterAnim.SetTrigger("Attack");
         target.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        SetHelthUI();
+        if (!isDie)
+        {
+            currentHealth -= damage;
+            colorPart.fillAmount = currentHealth / health;
+            characterAnim.SetTrigger("Hit");
+            if (currentHealth == 0)
+            {
+                Die();
+            }
+        }
     }
-    public void SetHelthUI()
+    public void Die()
     {
-        colorPart.fillAmount = currentHealth / health;
+        characterAnim.SetTrigger("Die");
+        Debug.Log("die");
+        enabled = false;
     }
 }
 public interface IAttackable
 {
     void Attack(IAttackable target);
     void TakeDamage(float damage);
+    void Die();
 }

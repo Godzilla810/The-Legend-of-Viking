@@ -1,17 +1,16 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Player : Character
 {
     //Player Movement
-    [SerializeField] private float rotationSpeed = 2f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private Transform playerCamera;
 
     //Parameter
     private bool isGrounded = true;
     private Vector3 playerVelocity;
-    private IAttackable enemy;
 
 
     void Update()
@@ -70,7 +69,7 @@ public class Player : Character
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
-            playerAnim.SetTrigger("Jump");
+            characterAnim.SetTrigger("Jump");
         }
 
         isGrounded = characterController.isGrounded;
