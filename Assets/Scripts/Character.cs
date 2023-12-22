@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,7 +17,6 @@ public class Character : MonoBehaviour, IAttackable
     protected AudioSource characterAudio;
 
     private float currentHealth;
-    private bool isDie = false;
 
     public void Start()
     {
@@ -55,15 +51,12 @@ public class Character : MonoBehaviour, IAttackable
 
     public void TakeDamage(float damage)
     {
-        if (!isDie)
+        currentHealth -= damage;
+        colorPart.fillAmount = currentHealth / health;
+        characterAnim.SetTrigger("Hit");
+        if (currentHealth == 0)
         {
-            currentHealth -= damage;
-            colorPart.fillAmount = currentHealth / health;
-            characterAnim.SetTrigger("Hit");
-            if (currentHealth == 0)
-            {
-                Die();
-            }
+            Die();
         }
     }
     public void Die()

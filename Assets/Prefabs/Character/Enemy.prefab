@@ -494,7 +494,7 @@ Transform:
   - {fileID: 5595475952333519297}
   - {fileID: 1458261592564015089}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8960426141594877795
 Animator:
@@ -568,7 +568,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &1910753062147095607
 MonoBehaviour:
@@ -584,10 +584,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   runSpeed: 10
+  rotationSpeed: 2
   attackDamage: 10
   attackRange: 3
   health: 100
-  canvas: {fileID: 6896051943314564530}
   colorPart: {fileID: 6556383873321157699}
   detectRange: 10
 --- !u!1 &1784190724955564801

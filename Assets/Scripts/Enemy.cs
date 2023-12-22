@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : Character
@@ -9,10 +10,14 @@ public class Enemy : Character
     private GameObject player;
     private float targetDistance;
     private float attactCountdown = 1.5f;
-
+    public new void Start()
+    {
+        base.Start();
+        this.transform.parent = null;
+        player = GameObject.Find("Player");
+    }
     public void Update()
     {
-        player = GameObject.Find("Player");
         targetDistance = Vector3.Distance(transform.position, player.transform.position);
         HandleMovement();
         HandleAttack();
@@ -43,11 +48,5 @@ public class Enemy : Character
                 attactCountdown = 1.5f;
             }
         }
-    }
-
-    void OnDrawGizmosSelected()     //在Scene視圖中繪製調試或可視化信息的圖形元素
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, detectRange);
     }
 }
