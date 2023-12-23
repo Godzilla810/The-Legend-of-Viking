@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class Player : Character
@@ -7,6 +9,7 @@ public class Player : Character
     //Player Movement
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private Transform playerCamera;
+    [SerializeField] private TextMeshProUGUI coinText;
 
     //Parameter
     private bool isGrounded = true;
@@ -89,6 +92,7 @@ public class Player : Character
         {
             Debug.Log("trigger");
             coinAmount++;
+            coinText.text = coinAmount.ToString();
             Destroy(other.gameObject);
         }
     } 
