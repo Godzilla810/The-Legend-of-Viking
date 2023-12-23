@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,7 +12,9 @@ public class Character : MonoBehaviour, IAttackable
     [SerializeField] private float attackDamage = 10f;
     [SerializeField] protected float attackRange = 3f;
     [SerializeField] private float health = 100f;
+    [SerializeField] private GameObject healthBar;
     [SerializeField] private Image colorPart;
+    [SerializeField] private GameObject coin;
 
     protected CharacterController characterController;
     protected Animator characterAnim;
@@ -61,8 +65,9 @@ public class Character : MonoBehaviour, IAttackable
     }
     public void Die()
     {
+        Instantiate(coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
         characterAnim.SetTrigger("Die");
-        Debug.Log("die");
+        healthBar.SetActive(false);
         enabled = false;
     }
 }

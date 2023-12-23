@@ -494,7 +494,7 @@ Transform:
   - {fileID: 5595475952333519297}
   - {fileID: 1458261592564015089}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8960426141594877795
 Animator:
@@ -588,8 +588,10 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 3
   health: 100
+  healthBar: {fileID: 5413592420839184085}
   colorPart: {fileID: 6556383873321157699}
   detectRange: 10
+  coin: {fileID: 1000010050107646, guid: 6c89103b157d2da488c14795672631b5, type: 3}
 --- !u!1 &1784190724955564801
 GameObject:
   m_ObjectHideFlags: 0

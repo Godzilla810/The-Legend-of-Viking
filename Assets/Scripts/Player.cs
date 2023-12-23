@@ -11,6 +11,7 @@ public class Player : Character
     //Parameter
     private bool isGrounded = true;
     private Vector3 playerVelocity;
+    private int coinAmount;
 
 
     void Update()
@@ -82,4 +83,13 @@ public class Player : Character
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin") && Input.GetKeyDown("f"))
+        {
+            Debug.Log("trigger");
+            coinAmount++;
+            Destroy(other.gameObject);
+        }
+    } 
 }
