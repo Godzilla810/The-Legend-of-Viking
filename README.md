@@ -4,7 +4,7 @@
 
 - **Unity Version:** 2022.3.4f1
 - **Platform:** PC
-- **Minimum System Requirements:** good computer
+- **Minimum System Requirements:** A good computer
 
 ## How to Play this Game
 
@@ -29,9 +29,11 @@
 
 - 回血補包
 - 遊戲音樂
-- Good game struction design : Interface and Parent-Child category
+- 遊戲架構 : using Interface and Parent-Child category (In "Character" and "Player" / "Enemy" scripts)
+- Github : [https://github.com/Godzilla810/The-Legend-of-Viking]
 
 ## Feedback
+這次製作時間較短，但有盡量還原出想像中的功能，雖然很多細節沒處理好稍嫌可惜。這次最大的收穫是學到如何用dictionary來製作隨機生成的tile。
 
 We value your feedback! Please share your thoughts, suggestions, or report any issues by contacting us at [e94106232@gs.ncku.edu.tw].
 
