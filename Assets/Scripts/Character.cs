@@ -20,7 +20,7 @@ public class Character : MonoBehaviour, IAttackable
     protected Animator characterAnim;
     protected AudioSource characterAudio;
 
-    private float currentHealth;
+    protected float currentHealth;
 
     public void Start()
     {
@@ -63,7 +63,12 @@ public class Character : MonoBehaviour, IAttackable
             Die();
         }
     }
-    public void Die()
+    public void Recover(float amount)
+    {
+        currentHealth += amount;
+        colorPart.fillAmount = currentHealth / health;
+    }
+    public virtual void Die()
     {
         Instantiate(coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
         characterAnim.SetTrigger("Die");

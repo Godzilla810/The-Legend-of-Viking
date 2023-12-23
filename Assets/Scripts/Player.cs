@@ -9,6 +9,7 @@ public class Player : Character
     //Player Movement
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private Transform playerCamera;
+    [SerializeField] private GameObject endPanel;
     [SerializeField] private TextMeshProUGUI coinText;
 
     //Parameter
@@ -88,12 +89,22 @@ public class Player : Character
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin") && Input.GetKeyDown("f"))
+        if (other.gameObject.CompareTag("Coin") && Input.GetKey("f"))
         {
-            Debug.Log("trigger");
             coinAmount++;
             coinText.text = coinAmount.ToString();
             Destroy(other.gameObject);
         }
-    } 
+        else if (other.gameObject.CompareTag("Diamond") && Input.GetKey("f"))
+        {
+            Recover(20);
+            Destroy(other.gameObject);
+        }
+    }
+    public override void Die()
+    {
+        endPanel.SetActive(true);
+        base.Die();
+
+    }
 }

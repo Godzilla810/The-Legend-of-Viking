@@ -5,21 +5,28 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private GameObject instructionPage;
-    private bool active;
+    [SerializeField] private GameObject page;
     private void Start()
     {
-        active = false;
-        instructionPage.SetActive(active);
+        page.SetActive(false);
+    }
+    public void BackMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
-    public void ShowInstruction()
+    public void ContinueGame()
     {
-        active = !active;
-        instructionPage.SetActive(active);
+        page.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+    public void ShowPage()
+    {
+        page.SetActive(true);
+        Time.timeScale = 0;
     }
     public void Exit()
     {
