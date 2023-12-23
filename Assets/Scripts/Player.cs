@@ -104,7 +104,7 @@ public class Player : Character
     public override void Die()
     {
         endPanel.SetActive(true);
+        this.GetComponent<AudioSource>().Stop();
         base.Die();
-
     }
 }
